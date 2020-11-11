@@ -1,11 +1,16 @@
 #!/bin/bash
+# 保存发送到linux服务器需要更改CRLF换行方式为LF，因为git提交的时候会自动更改成CRLF
 today=`date +%Y%m%d`
 dateTime=`date +%Y-%m-%d_%H-%M-%S`
 servers=("10.18.2.118" "10.18.2.119" "10.18.2.120")
-logfile="/root/auto-deploy-logs/log-${today}.log"
+logfile="/root/logs-auto-deploy/log-${today}.log"
 functionNumber=$1
 versionName=$2
 number=0
+if [ ! -x '/root/logs-auto-deploy' ]; then
+    echo "自动创建log目录"
+    eval "mkdir /root/logs-auto-deploy"
+fi
 # at命令定时任务
 # at HH:MM YYYY-MM-DD 回车
 # eg(at 9:00 2020-11-11)

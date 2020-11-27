@@ -85,11 +85,11 @@ setTask(){
             echo "------ 开始更新 ${item} 服务器"
             echo "[ `date` ] 开始更新 ${item} 服务器" >> $logfile
             # 更新ai开放平台前端到生产
-            # eval "scp -r /root/webapps/ai/package/${versionName} apps@${item}:/apps/webapps/ai/package/"
-            # # 更新软连接
-            # eval "ssh apps@${item} 'ln -fs /apps/webapps/ai/package/${versionName}/dist/* /apps/svr/nginx-1.17.5/html/ai/;exit;'"
-            # # 重启nginx
-            # eval "ssh apps@${item} '/apps/svr/nginx-1.17.5/sbin/nginx -s reload;exit;'"
+            eval "scp -r /root/webapps/ai/package/${versionName} apps@${item}:/apps/webapps/ai/package/"
+            # 更新软连接
+            eval "ssh apps@${item} 'ln -fs /apps/webapps/ai/package/${versionName}/dist/* /apps/svr/nginx-1.17.5/html/ai/;exit;'"
+            # 重启nginx
+            eval "ssh apps@${item} '/apps/svr/nginx-1.17.5/sbin/nginx -s reload;exit;'"
             echo "[ `date` ] 更新 ${item} 服务器成功" >> $logfile
             echo "------ 更新 ${item} 服务器成功"
         done

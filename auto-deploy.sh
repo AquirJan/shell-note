@@ -49,7 +49,7 @@ modifyNginxAndRestart() {
             echo "------ 开始更新 ${item} 服务器 nginx"
             echo "[ `date` ] 开始更新 ${item} 服务器 nginx" >> $logfile
             # 备份conf
-            eval "ssh apps@${item} 'cp /apps/svr/nginx-1.17.5/conf/conf/ai.conf /apps/svr/nginx-1.17.5/conf/conf/ai_${dateTime}.conf;exit;'"
+            eval "ssh apps@${item} 'cp /apps/svr/nginx-1.17.5/conf/conf/ai.conf /apps/svr/nginx-1.17.5/conf/conf/ai.conf.${dateTime};exit;'"
             # 复制conf到server
             eval "scp /root/ai.conf apps@${item}:/apps/svr/nginx-1.17.5/conf/conf/"
             # 重启nginx
@@ -112,7 +112,7 @@ renewNginx() {
             echo "------ 开始更新 ${item} 服务器 nginx"
             echo "[ `date` ] 开始更新 ${item} 服务器 nginx" >> $logfile
             # 备份conf
-            eval "ssh apps@${item} 'cp /apps/svr/nginx-1.17.5/conf/conf/ai.conf /apps/svr/nginx-1.17.5/conf/conf/ai_${dateTime}.conf;exit;'"
+            eval "ssh apps@${item} 'cp /apps/svr/nginx-1.17.5/conf/conf/ai.conf /apps/svr/nginx-1.17.5/conf/conf/ai.conf.${dateTime};exit;'"
             # 复制conf到server
             eval "scp /root/ai.conf apps@${item}:/apps/svr/nginx-1.17.5/conf/conf/"
             echo "[ `date` ] 更新 ${item} 服务器 nginx 成功" >> $logfile
